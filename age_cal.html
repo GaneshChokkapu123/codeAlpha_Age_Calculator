@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Age Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height:90vh;
+            
+            margin: 0px;
+        }
+
+        #center {
+            margin-top: 50px;
+            background-color: beige;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+       
+        
+
+        input[type="date"] {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            background-color: aqua;
+        }
+
+        #message {
+            color: rgb(17, 0, 255);
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: 3px solid #32A80F;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #result {
+            color: #a8300f;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="center">
+
+    <h2> Age Calculator</h2>
+  
+    <!-- Choose a date and enter in input field -->
+    <b>Enter Date of Birth: <input type="date" id="DOB" onclick="validateDateInput()"></b>
+    <br/><br/>
+    <span id="message"></span><br><br>
+
+    <!-- Choose a date and enter in input field -->
+    <button type="submit" onclick="ageCalculator()">Calculate age</button><br><br>
+    <h3 id="result"></h3>
+</div>
+
+<script>
+    function ageCalculator() {
+        var userinput = document.getElementById("DOB").value;
+        var dob = new Date(userinput);
+        var currentDate = new Date();
+        
+        if (dob > currentDate) {
+            document.getElementById("message").innerHTML = "Choose a date before the current date!";
+            return false;
+        } else if (userinput == null || userinput == '') {
+            document.getElementById("message").innerHTML = "Choose a date please!";
+            return false;
+        } else {
+            var month_diff = Date.now() - dob.getTime();
+            var age_dt = new Date(month_diff);
+            var year = age_dt.getUTCFullYear();
+            var age = Math.abs(year - 1970);
+            document.getElementById("result").innerHTML = "Your age is: " + age + " years.";
+            
+    
+        }
+    }
+    function validateDateInput() {
+        document.getElementById("result").innerHTML = ""; 
+        document.getElementById("message").innerHTML = ""; 
+    }
+</script>
+
+</body>
+</html>
